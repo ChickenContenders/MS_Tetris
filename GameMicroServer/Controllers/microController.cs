@@ -74,22 +74,16 @@ namespace Micro
         //    }
         //    return Ok(game);
         //}
+        // This method will return the GameInfo object with the specified ID
         [HttpGet("Games/Play/{id}")]
-        public GameInfo GetById(int id)
+        public IActionResult GetById(int id)
         {
-            GameInfo info = new GameInfo
+            var game = TheInfo.FirstOrDefault(g => g.Id == id);
+            if (game == null)
             {
-                Id = 1,
-                Title = "Tetris",
-                //Content = "~/js/tetris.js",
-                Author = "Steve from minecraft",
-                DateAdded = "09/09/1541",
-                Description = "Block Block Block",
-                HowTo = "Put Blocks Down",
-                //Thumbnail = "/images/tetris.jpg"
-            };
-            //Take the requested id and then go to that contoller and return the necessary info
-            return info; // This would be returning hte info from the microservice
+                return NotFound();
+            }
+            return Ok(game);
         }
 
         [HttpGet]
