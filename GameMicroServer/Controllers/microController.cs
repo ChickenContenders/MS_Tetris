@@ -1,6 +1,3 @@
-
-// DELETE AFTER GETTING TETRISCONTROLLER SETUP
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +7,6 @@ using Microsoft.Extensions.Logging;
 
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
-using GameMicroServer.Services;
 
 namespace Micro
 {
@@ -18,10 +14,13 @@ namespace Micro
     [Route("[controller]")]
     public class MicroController : ControllerBase
     {
+        /// <summary>
+        /// This is an editted version of the original monolithic microservice to only contain the Tetris object inside the array.
+        /// Instead of reconfiguring the architecture to instead only pass one object it is more efficient to keep the same structure and return a one item list since we are'nt worried about
+        /// peak performance at this moment.
+        /// </summary>
         private static readonly List<GameInfo> TheInfo = new List<GameInfo>
         {
-            //Remove this code once individual microservices are set up 
-                
             new GameInfo { 
                 Id = 2,
                 Title = "Tetris",
@@ -41,9 +40,6 @@ namespace Micro
         {
             _logger = logger;
         }
-
-        private readonly IGameRepository _gameRepo;
-        
 
         [HttpGet]
         public IEnumerable<GameInfo> Get()
