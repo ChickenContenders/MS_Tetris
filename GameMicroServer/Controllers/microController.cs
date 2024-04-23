@@ -14,20 +14,15 @@ namespace Micro
     [Route("[controller]")]
     public class MicroController : ControllerBase
     {
+        /// <summary>
+        /// This is an editted version of the original monolithic microservice to only contain the Tetris object inside the array.
+        /// Instead of reconfiguring the architecture to instead only pass one object it is more efficient to keep the same structure and return a one item list since we are'nt worried about
+        /// peak performance at this moment.
+        /// </summary>
         private static readonly List<GameInfo> TheInfo = new List<GameInfo>
         {
             new GameInfo { 
-                //Id = 1,
-                Title = "Snake",
-                //Content = "~/js/snake.js",
-                Author = "Hillary clinton ",
-                DateAdded = "01/01/1942",
-                Description = "Look at me im a SNEEEEK",
-                HowTo = "Just snek around",
-                //Thumbnail = "/images/snake.jpg" //640x360 resolution
-            },
-            new GameInfo { 
-                //Id = 2,
+                Id = 2,
                 Title = "Tetris",
                 //Content = "~/js/tetris.js",
                 Author = "Steve from minecraft",
@@ -35,16 +30,6 @@ namespace Micro
                 Description = "Block Block Block",
                 HowTo = "Put Blocks Down",
                 //Thumbnail = "/images/tetris.jpg"
-            },
-            new GameInfo { 
-                //Id = 3,
-                Title = "Pong",
-                //Content = "~/js/pong.js",
-                Author = "Forest Gump",
-                DateAdded = "07/04/1742",
-                Description = "RUN FOREST RUN!",
-                HowTo = "Hit the back back",
-                //Thumbnail = "/images/pong.jpg"
             },
 
         };
